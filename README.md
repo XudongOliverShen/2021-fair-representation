@@ -1,6 +1,6 @@
 # Introduction
 
-This repository contains the code associated with the upcoming paper in TPAMI titled "[Fair Representation: Guaranteeing ApproximateMultiple Group Fairness for Unknown Tasks](https://arxiv.org/abs/2109.00545)".
+This repository contains the code associated with the upcoming paper in TPAMI titled "[Fair Representation: Guaranteeing Approximate Multiple Group Fairness for Unknown Tasks](https://arxiv.org/abs/2109.00545)".
 
 # Fairness Guarantees
 

@@ -23,9 +23,11 @@ def parse_option():
 
     parser = argparse.ArgumentParser(description='training encoders....', fromfile_prefix_chars='@')
     parser.add_argument('--VGGFace2_dir', type=str,
-                            default='/temp/xudong/VGGFace2_112_112_dataset')
+                            default='data/VGGFace2_112_112')
+                            # default='/temp/xudong/VGGFace2_112_112_dataset')
     parser.add_argument('--LFW_dir', type=str,
-                            default='/temp/xudong/LFW_112_112_dataset')
+                            default='data/LFW_112_112')
+                            # default='/temp/xudong/LFW_112_112_dataset')
     parser.add_argument('--pkl_dir', type=str,
                             default='checkpoints/VGGFace2')    
     parser.add_argument('--device', type=str, default='cuda:2')

@@ -134,10 +134,10 @@ class process_train(object):
             # hn, hn_genders = self.face_loss.random_sample(256, iden_unique) # originally 1024
             # hn = nn.functional.normalize(hn, p=2, dim=1, eps=1e-12)
             hn = nn.functional.normalize(hn[:,:-1], p=2, dim=1, eps=1e-12)
-            fair_loss_1, l2_1 = self.fair_loss(hn, hn_genders, self.fair_loss_alpha, self.fair_loss_coef)
+            fair_loss_1 = self.fair_loss(hn, hn_genders, self.fair_loss_alpha, self.fair_loss_coef)
 
             h2 = nn.functional.normalize(h[idx,:-1], p=2, dim=1, eps=1e-12)
-            fair_loss_2, l2_2 = self.fair_loss(h2, genders[idx], self.fair_loss_alpha, self.fair_loss_coef)
+            fair_loss_2  = self.fair_loss(h2, genders[idx], self.fair_loss_alpha, self.fair_loss_coef)
             loss = self.alpha / (self.alpha+self.lmd1+self.lmd2) * face_loss + self.lmd1/(self.alpha+self.lmd1+self.lmd2) * fair_loss_1 + self.lmd2/(self.alpha+self.lmd1+self.lmd2) * fair_loss_2
 
             self.optim.zero_grad()

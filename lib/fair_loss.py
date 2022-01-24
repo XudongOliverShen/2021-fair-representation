@@ -158,7 +158,7 @@ def MMD2_rq_u(h, y, alpha=1, l2=1):
     out = ((k_11.sum() * 2) / (n_1*(n_1-1))
                     - 2 * k_12.sum() / (n_1 * n_2)
                     + (k_22.sum() * 2)/(n_2*(n_2-1)))
-    return out, l2
+    return out
 
 
 def rq_from_k(l2, pd_11, pd_12, pd_22, alpha=1):

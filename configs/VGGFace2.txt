@@ -2,7 +2,7 @@
 data/VGGFace2_112_112
 --LFW_dir
 data/LFW_112_112
---pkl_dir
+--out_dir
 checkpoints/VGGFace2
 --device
 cuda:0
@@ -30,3 +30,5 @@ cuda:0
 1
 --visdom_name
 sphereNet20
+--visdom_port
+8097

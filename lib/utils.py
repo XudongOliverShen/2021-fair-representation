@@ -38,8 +38,8 @@ class MyPipeline(Pipeline):
 
 class VisdomLinePlotter(object):
     """Plots to Visdom"""
-    def __init__(self, env_name='main'):
-        self.viz = Visdom()
+    def __init__(self, env_name='main', port=8097):
+        self.viz = Visdom(port=port)
         self.env = env_name
         self.plots = {}
 
@@ -56,11 +56,11 @@ class VisdomLinePlotter(object):
     
 class logger(object):
 
-    def __init__(self, env_name, pkl_path):
+    def __init__(self, env_name, pkl_path, port):
         
         self.dict = {}
         self.training_stat = {}
-        self.plotter = VisdomLinePlotter(env_name=env_name)
+        self.plotter = VisdomLinePlotter(env_name=env_name, port=port)
         self.dict_path = pkl_path
     
     def log(self, state, var, name, val):

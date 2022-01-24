@@ -158,7 +158,7 @@ def MMD2_rq_b(h, y, alpha, l):
 ```
 
 # Contact and Citation
-Send any feedback to Xudong Shen (<xudong.shen@u.nus.edu>). Cite our work, or not : -), if you find our paper and/or the associated code helpful.
+Send any feedback to Xudong Shen (<xudong.shen@u.nus.edu>). Cite our work if you find our paper and/or the associated code helpful. : -)
 ```bibtex
 @misc{shen2021fair,
       title={Fair Representation: Guaranteeing Approximate Multiple Group Fairness for Unknown Tasks}, 

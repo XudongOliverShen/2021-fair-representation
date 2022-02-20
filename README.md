@@ -160,12 +160,13 @@ def MMD2_rq_b(h, y, alpha, l):
 # Contact and Citation
 Send any feedback to Xudong Shen (<xudong.shen@u.nus.edu>). Cite our work if you find our paper and/or the associated code helpful. : -)
 ```bibtex
-@misc{shen2021fair,
-      title={Fair Representation: Guaranteeing Approximate Multiple Group Fairness for Unknown Tasks}, 
-      author={Xudong Shen and Yongkang Wong and Mohan Kankanhalli},
-      year={2021},
-      eprint={2109.00545},
-      archivePrefix={arXiv},
-      primaryClass={cs.LG}
-}
+@ARTICLE{2022_shen_fair_representation,
+  author={Shen, Xudong and Wong, Yongkang and Kankanhalli, Mohan},
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence}, 
+  title={Fair Representation: Guaranteeing Approximate Multiple Group Fairness for Unknown Tasks}, 
+  year={2022},
+  volume={},
+  number={},
+  pages={1-1},
+  doi={10.1109/TPAMI.2022.3148905}}
 ```

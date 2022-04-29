@@ -117,28 +117,8 @@ def pdist_squared(sample_1, sample_2):
 
     return distances_squared
 
-def gram_with_RQ_kernel(sample_1, sample_2, alpha, l):
-    """ calculate the gram matrix for RQ kernel between two sets of samples
-
-    k^{rq}_{\alpha} (x, y) = 
-        (1 + \frac{\|x-y\|^2}{2\alpha})^{-\alpha}
-    
-    Args:
-        samples_1 (torch tensor, [n_1, d]): the first set of samples
-        samples_2 (torch tensor, [n_2, d]): the second set of samples
-        alpha: the parameter in RQ kernel
-    
-    Returns:
-        the gram matrix (torch tensor, [n_1, n_2])
-    """
-
-    distances_squared = pdist_squared(sample_1, sample_2)
-
-    return torch.pow(1 + distances_squared/(2*alpha*l**2), -alpha)
-
-def MMD2_rq_b(h, y, alpha, l):
-    """ finite-sample biased estimate for squared MMD with rational quadratic kernel
-
+def MMD2_rq_u(h, y, alpha=1, l2=1):
+    """ finite-sample unbiased estimate for squared MMD with rational quadratic kernel
     Args:
         h (torch tensor, [N, d]): samples
         y (torch tensor, [N]): class, either 0 or 1
@@ -150,10 +130,19 @@ def MMD2_rq_b(h, y, alpha, l):
 
     h_1 = h[[True if i==0 else False for i in y]]
     h_2 = h[[True if i==1 else False for i in y]]
+    n_1 = h_1.shape[0]
+    n_2 = h_2.shape[0]
 
-    out = (gram_with_RQ_kernel(h_1, h_1, alpha, l).mean() 
-                - 2 * gram_with_RQ_kernel(h_1, h_2, alpha, l).mean() 
-                + gram_with_RQ_kernel(h_2, h_2, alpha, l).mean())
+    pd_12 = torch.cdist(h_1.unsqueeze(0),h_2.unsqueeze(0)).squeeze().reshape(-1)
+    pd_11 = torch.pow(torch.nn.functional.pdist(h_1), 2)
+    pd_22 = torch.pow(torch.nn.functional.pdist(h_2), 2)
+
+    k_11 = torch.pow(1 + pd_11/(2 * alpha * l2), -alpha)
+    k_22 = torch.pow(1 + pd_22/(2 * alpha * l2), -alpha)
+    k_12 = torch.pow(1 + pd_12/(2 * alpha * l2), -alpha)
+    out = ((k_11.sum() * 2) / (n_1*(n_1-1))
+                    - 2 * k_12.sum() / (n_1 * n_2)
+                    + (k_22.sum() * 2)/(n_2*(n_2-1)))
     return out
 ```
 

@@ -98,25 +98,6 @@ import numpy as np
 import statistics
 from scipy import optimize
 
-def pdist_squared(sample_1, sample_2):
-    """ squared pair-wise distance
-
-    Args:
-        samples_1 (torch tensor, [n_1, d]): the first set of samples
-        samples_2 (torch tensor, [n_2, d]): the second set of samples
-    Returns:
-        a matrix of pair-wise distance (torch tensor, [n_1, n_2])
-    """
-
-    n_1, n_2 = sample_1.size(0), sample_2.size(0)
-
-    sample_1 = sample_1.unsqueeze(1).repeat(1,n_2,1)
-    sample_2 = sample_2.unsqueeze(0).repeat(n_1,1,1)
-
-    distances_squared = torch.pow(sample_1 - sample_2, 2).sum(dim=-1)
-
-    return distances_squared
-
 def MMD2_rq_u(h, y, alpha=1, l2=1):
     """ finite-sample unbiased estimate for squared MMD with rational quadratic kernel
     Args:
